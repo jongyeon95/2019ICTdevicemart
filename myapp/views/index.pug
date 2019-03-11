@@ -1,0 +1,37 @@
+doctype html
+
+html
+
+	head
+
+	body
+
+		h2 HTML Forms
+		img(src='http://192.168.0.6:3000/home/pi/ict/myapp/redled.jpg', alt='redled', width='200', height='200')
+		form(action='/users' method='post')
+			| A개수:
+
+			br
+
+			input(type='text', name='A', value='0')
+
+			br
+
+			|  B 개수:
+
+			br
+
+			input(type='text', name='B', value='0')
+
+			br
+			|  C 개수:
+
+			br
+
+			input(type='text', name='C', value='0')
+
+			br
+
+			br
+
+			input(type='submit', value='주문')
