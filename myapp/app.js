@@ -4,24 +4,32 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser =require('body-parser');
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/order');
 var usersRouter = require('./routes/users');
+var firstRouter = require('./routes/first');
+var checkRouter = require('./routes/check');
+var addRouter = require('./routes/add');
 var bodyParser = require('body-parser');
 var fs=require('fs')
 var app = express();
+var mysql = require('mysql');
 // view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
+app.engine('html',require('ejs').renderFile);
 app.set('view engine', 'pug');
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
+app.use('/order', indexRouter);
 app.use('/users', usersRouter);
+app.use('/check', checkRouter);
+app.use('/add', addRouter);
+app.use('/', firstRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -39,14 +47,13 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.use(express.static(__dirname + '/public'));
 
 app.use(function (request, response) {
 
     response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     response.end('<img src="/redled.jpg" />');
-response.end('<img src="/greenled.jpg" />');
-response.end('<img src="/yellowled.jpg" />');
+    response.end('<img src="/greenled.jpg" />');
+    response.end('<img src="/yellowled.jpg" />');
 
 });
 module.exports = app;

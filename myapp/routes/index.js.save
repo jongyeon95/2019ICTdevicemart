@@ -1,0 +1,41 @@
+var express = require('express');
+var router = express.Router();
+var mysql=require('mysql');
+/* GET home page. */
+var bodyParser=require('body-parser');
+var fs = require('fs');
+var mySqlClient = mysql.createConnection({
+user:'ict',
+password:'1234',
+database:'mysql'
+});
+
+ mySqlClient.connect();
+  mySqlClient.query('SELECT * FROM products', function (error, results, fields)$
+    if (error) {
+        console.log(error);
+    }
+    console.log(results);
+});
+mySqlClient.end();
+consloe.log('hi');
+
+
+router.get('/', function(req, res, next) {
+
+  mySqlClient.connect();
+  mySqlClient.query('SELECT * FROM products', function (error, results, fields) {
+    if (error) {
+        console.log(error);
+    }
+    console.log(results);
+});
+mySqlClient.end();
+consloe.log('hi');
+
+//res.redirect('/public/index.html');
+consloe.log('hi');
+
+});
+
+module.exports = router;

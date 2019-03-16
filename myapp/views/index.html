@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  
+}
+form{
+ margin: 0 auto;
+ text-align:center;
+ width:50%;
+ 
+}
+th,td,tr{text-align: center;}
+</style>
+</head>
+<body>
+<h2 style="text-align:center;">ORDER LIST</h2>
+<form action="/users" method="post">
+<table style="margin: 0 auto; width:100%">
+  <tr>
+    <th>제품명</th>
+    <th>이미지</th> 
+    <th>수량</th>
+  </tr>
+  <tr>
+    <td style="width:20%">RED LED</td>
+    <td style="width:60%"><img src="/redled.jpg"></td>
+    <td style="width:20%"><select name="A">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select></td>
+  </tr>
+  <tr>
+    <td>GREEN LED</td>
+    <td><img src="/yellowled.jpg"></td>
+    <td><select name="B">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select></td>
+  </tr>
+  <tr>
+    <td>YELLOW LED</td>
+    <td><img src="/greenled.jpg"></td>
+    <td><select name="C">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select></td>
+  </tr>
+</table>
+<br>
+<input type="submit" value="주문" style="width:70px; text-align:center; font-size:20px ;" ></form>
+</body>
+</html>
+

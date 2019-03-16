@@ -1,0 +1,117 @@
+doctype html
+
+head
+
+  style.
+      a:link, a:visited {
+
+      color: white;
+
+      display: inline-block;
+
+      text-decoration: none;
+
+      }
+
+
+    table, th, td {
+
+    border: 2px solid black;
+    font-weight:bold;
+    }
+
+    form{
+
+    margin: 0 auto;
+
+    text-align:center;
+
+    width:600px;
+
+    }
+
+    th,td,tr{text-align: center;}
+    th{font-size:20px;}
+
+h2(style='text-align:center;font-family:fantasy; margin-top:3%; font-size:250%; ') PRODUCTS LIST
+
+form(action='/../add' method='post')
+
+  table(style='margin: 0 auto; width:100%')
+
+    tr
+
+      th 제품명
+
+      th 이미지
+
+      th 총수량
+
+      th 이용가능한 수량
+
+    tr
+
+      td(style='width:30%') RED LED
+
+      td(style='width:30%')
+
+        img(src='/redled.jpg')
+
+      td(style='width:20%') #{ta1}
+        br
+        div(style='border: 1px solid black; margin:5px; margin-top:15px;')
+          p(style='margin:1px') 추가할  수량
+          input(type='text' name='ta1' size='2' value=0)
+
+      td(style='width:20%') #{aa1}
+        br
+        div(style='border: 1px solid black; margin:5px; margin-top:15px;')
+          p(style='margin:1px') 추가할  수량
+          input(type='text' name='aa1' size='2' value=0)
+
+    tr
+
+      td YELLOW LED
+
+      td
+
+        img(src='/yellowled.jpg')
+
+      td #{ta2}
+        br
+        div(style='border: 1px solid black; margin:5px; margin-top:15px;')
+          p(style='margin:1px') 추가할  수량
+          input(type='text' name='ta2' size='2' value=0)
+      td #{aa2}
+        br
+        div(style='border: 1px solid black; margin:5px; margin-top:15px;')
+          p(style='margin:1px') 추가할  수량
+          input(type='text' name='aa2' size='2' value=0)
+
+    tr
+
+      td GREEN LED
+
+      td
+
+        img(src='/greenled.jpg')
+
+      td #{ta3}
+        br
+        div(style='border: 1px solid black; margin:5px; margin-top:15px;')
+          p(style='margin:1px') 추가할  수량
+          input(type='text' name='ta3' size='2' value=0)
+      td #{aa3}
+        br
+        div(style='border: 1px solid black; margin:5px; margin-top:15px;')
+          p(style='margin:1px') 추가할  수량
+          input(type='text' name='aa3' size='2' value=0)
+
+  br
+  div(style='background-color:black;color:white;padding:5px; width:450px; margin: 0 auto; margin-top:30px;')
+    table(style='width:450px;border: 2px solid white;')
+      tr
+        td(style='width:50%;border: 2px solid white;font-size:20px;')
+          a(href='/..') 돌아가기
+        td(style='width:50%;border: 2px solid white;font-size:20px;')
+          input(type='submit' value='수량채우기' style='font-size:20px; background-color:black; color:white; border: 2px solid black; font-weight:bold ' )
