@@ -24,9 +24,9 @@ router.post('/', function(req, res, next){
 	ic=parseInt(c);
 
 	if(results[0].aamount < ia || results[1].aamount < ib || results[2].aamount < ic)
-	{res.send('fail');}
+	{res.render('fail');}
 	else{
-	res.send('a='+a+'\n b='+b+'\n c='+c);
+	res.render('success');
 	var options = {
   	mode: 'text',
   	pythonPath: '',
