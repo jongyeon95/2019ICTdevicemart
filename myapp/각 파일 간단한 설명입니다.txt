@@ -1,0 +1,23 @@
+파일명: app.js
+내용 : express 를 통해 만들어진 main 서버 앱
+
+파일명:test.py
+내용:웹에서 주문을 받아 아두이노로 UART통신을 통해 명령하는 파일
+
+디렉토리명:views 
+내용:web 레이아웃 모음
+
+파일명: routes 폴더의 add.js
+내용: 수량을 채우는 부분의 파일
+
+파일명: routes 폴더의 check.js
+내용: 수량을 확인하는 부분의 파일
+
+파일명: routes 폴더의 first.js
+내용: 첫화면 파일
+
+파일명: routes 폴더의 order.js
+내용: 주문화면 파일
+
+파일명: routes 폴더의 users.js
+내용: 주문 받은 수량을 아두이노로 넘겨주는 명령을 실행시키도록 도와주는 파일

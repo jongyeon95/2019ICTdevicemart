@@ -39,12 +39,12 @@ router.post('/', function(req, res, next){
   	scriptPath: '',
   	args: [a,b,c]
 	};
-	/*
+	
 	Py.PythonShell.run('test.py', options, function (err, results) {
    	if (err) throw err;
 	var r=results;
 	console.log(r);});
-	*/
+	
 	ca=results[0].aamount-ia;
 	tca=results[0].tamount-ia;
 	cb=results[1].aamount-ib;
