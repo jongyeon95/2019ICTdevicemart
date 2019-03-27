@@ -5,7 +5,10 @@ var mysql=require('mysql');
 var bodyParser=require('body-parser');
 var fs = require('fs');
 
+//get 요청이 들어오면 시작
 router.get('/', function(req, res, next) {
+
+//SQL설정
 var mySqlClient = mysql.createConnection({
 user:'ict',
 password:'1234',

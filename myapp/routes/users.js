@@ -27,6 +27,11 @@ router.post('/', function(req, res, next){
 	{res.render('fail');}
 	else{
 	res.render('success');
+	
+        a=ia+5-results[0].aamount;
+	b=ib+5-results[1].aamount;
+	c=ic+5-results[2].aamount;
+	console.log(a,b,c);
 	var options = {
   	mode: 'text',
   	pythonPath: '',

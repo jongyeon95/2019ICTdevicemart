@@ -12,12 +12,16 @@ var fita2;
 var fiaa3;
 var fita3;
 
+// /add로 포스트 요청을 받았을때 동작
 router.post('/', function(req, res, next) {
+
+//sql 아이디 비밀번호 설정
 var mySqlClient = mysql.createConnection({
 user:'ict',
 password:'1234',
 database:'mysql'
 });
+
 var ta1=req.body.ta1;
 var ta2=req.body.ta2;
 var ta3=req.body.ta3;
@@ -34,15 +38,16 @@ var ita3=parseInt(ta3);
 
 
 mySqlClient.connect();
+
 mySqlClient.query('SELECT * FROM products', function (error, results, fields){    if (error) {
         console.log(error);
+res.render('fail');//실패시 fail.pug 띄우기
     }
-else{
 
+else{
+//SQL 갱신
 ita1=ita1+parseInt(results[0].tamount);
 iaa1=iaa1+parseInt(results[0].aamount);
-console.log(ita1);
-console.log(parseInt(results[0].tamount));
 
 
 ita2=ita2+parseInt(results[1].tamount);
@@ -61,12 +66,11 @@ mySqlClient.query('UPDATE products SET tamount='+ita3+', aamount='+iaa3+' WHERE 
         console.log(error);
    } });
 
-
 }
 
 });
 console.log(fita1);
-
+res.render('success');//성공화면 띄우기
 
 
 

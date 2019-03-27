@@ -24,11 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/order', indexRouter);
-app.use('/users', usersRouter);
-app.use('/check', checkRouter);
-app.use('/add', addRouter);
-app.use('/', firstRouter);
+app.use('/order', indexRouter); //주문페이지  라우팅
+app.use('/users', usersRouter);// 주문 넣기 라우팅
+app.use('/check', checkRouter);// 물량확인 라우팅
+app.use('/add', addRouter);//물량 추가 라우팅
+app.use('/', firstRouter);// 첫화면 라우팅
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,7 +47,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-
+//이미지 나타내기위한 코드
 app.use(function (request, response) {
 
     response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });

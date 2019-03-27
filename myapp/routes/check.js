@@ -5,13 +5,17 @@ var mysql=require('mysql');
 var bodyParser=require('body-parser');
 var fs = require('fs');
 
+// 현주소로 get요청을 받을때 동작
 router.get('/', function(req, res, next) {
+
+//SQL설정
 var mySqlClient = mysql.createConnection({
 user:'ict',
 password:'1234',
 database:'mysql'
 });
 
+//SQL 연결
 mySqlClient.connect();
 mySqlClient.query('SELECT * FROM products', function (error, results, fields){    if (error) {
         console.log(error);
@@ -27,6 +31,7 @@ aa2=results[1].aamount.toString();
 ta3=results[2].tamount.toString();
 aa3=results[2].aamount.toString();
 
+//check.pug에 인자값 전달	
 res.render('check',{n1:n1 ,n2:n2 ,n3:n3, aa1:aa1, aa2:aa2, aa3:aa3, ta1:ta1, ta2:ta2, ta3:ta3 });
 
 });
