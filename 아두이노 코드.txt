@@ -1,0 +1,186 @@
+#include <Stepper.h>
+
+const int stepsPerRevolution = 2048; // 모터별 스탭 수 설정 
+
+Stepper stepperA(stepsPerRevolution,52,48,50,46); //모터A 핀 설정
+Stepper stepperB(stepsPerRevolution,44,40,42,38); //모터B 핀 설정
+Stepper stepperC(stepsPerRevolution,36,32,34,30); //모터C 핀 설정      
+
+int RelaypinD = 4;  // IN1 4채널 릴레이 모듈 핀 설정
+int RelaypinC = 5;  // IN2 4채널 릴레이 모듈 핀 설정
+int RelaypinB = 6;  // IN3 4채널 릴레이 모듈 핀 설정
+int RelaypinA = 7;  // IN4 4채널 릴레이 모듈 핀 설정
+
+char loopn1='z';
+char loopn2='z';
+char loopn3='z';
+
+int a1;
+int a2;
+int a3;
+
+void setup()
+{
+    Serial.begin(9600);
+    stepperA.setSpeed(14);
+    stepperB.setSpeed(14);
+    stepperC.setSpeed(14);
+    
+    pinMode(RelaypinD,OUTPUT);         // 릴레이 제어 1번핀을 출력으로 설정
+    pinMode(RelaypinC,OUTPUT);         // 릴레이 제어 2번핀을 출력으로 설정
+    pinMode(RelaypinB,OUTPUT);         // 릴레이 제어 3번핀을 출력으로 설정
+    pinMode(RelaypinA,OUTPUT);         // 릴레이 제어 4번핀을 출력으로 설정
+}
+
+void loop() {
+
+  while(Serial.available()>0)
+  {
+    
+    loopn1=Serial.read(); //라즈베리파이에서 시리얼로 입력
+    delay(2);
+    loopn2=Serial.read(); //라즈베리파이에서 시리얼로 입력
+    delay(2);
+    loopn3=Serial.read(); //라즈베리파이에서 시리얼로 입력
+    delay(2);
+    
+    a1=(int)loopn1-48; //시리얼에서 받아온 값 CHAR에서 int로 형변환
+    a2=(int)loopn2-48; //시리얼에서 받아온 값 CHAR에서 int로 형변환
+    a3=(int)loopn3-48; //시리얼에서 받아온 값 CHAR에서 int로 형변환
+    }
+    
+    digitalWrite (RelaypinA, HIGH);
+    digitalWrite (RelaypinD, HIGH);
+    if(loopn1 != 'z') //A에 주문이 들어오면 동작
+    { 
+      Serial.println(a1);
+      Serial.println(a2);
+      Serial.println(a3);
+      digitalWrite (RelaypinA, LOW); // 릴레이 ON
+      pushingA(a1);
+      digitalWrite (RelaypinA, HIGH); // 릴레이 OFF
+      delay (500);
+      digitalWrite (RelaypinA, LOW); // 릴레이 ON
+      delay (500);
+      pullingA(a1);
+      digitalWrite (RelaypinA, HIGH); // 릴레이 OFF
+      loopn1='z'; // 주문 플래그 초기화
+      }
+if(loopn2 != 'z') //B에 주문이 들어오면 동작
+    { 
+      digitalWrite (RelaypinB, LOW); // 릴레이 ON
+      pushingB(a2);
+      digitalWrite (RelaypinB, HIGH); // 릴레이 OFF
+      delay (500);
+      digitalWrite (RelaypinB, LOW); // 릴레이 ON
+      delay (500);
+      pullingB(a2);
+      digitalWrite (RelaypinB, HIGH); // 릴레이 OFF
+      loopn2='z'; // 주문 플래그 초기화
+      }
+if(loopn3 != 'z') //C에 주문이 들어오면 동작
+    { 
+     digitalWrite (RelaypinC, LOW); // 릴레이 ON
+      pushingC(a3);
+      digitalWrite (RelaypinC, HIGH); // 릴레이 OFF
+      delay (500);
+      digitalWrite (RelaypinC, LOW); // 릴레이 ON
+      delay (500);
+      pullingC(a3);
+      digitalWrite (RelaypinC, HIGH); // 릴레이 OFF
+      loopn3='z'; // 주문 플래그 초기화
+      conveyor(); // 컨베이어 작동
+     }
+}
+
+//부품 밀기 함수
+void pushingA(int a){
+   delay(500);
+  for(int i=0;i<a;i++)
+  {   
+      Serial.println("Pulling out the product...."); 
+      stepperA.step(2048);
+      delay(100);
+      stepperA.step(1024);
+      delay(100);
+    }
+     delay(500);
+  }
+//부품 밀기 함수
+ void pushingB(int a){
+   delay(500);
+  for(int i=0;i<a;i++)
+  {   
+      Serial.println("Pulling out the product...."); 
+      stepperB.step(2048);
+      delay(100);
+      stepperB.step(1024);
+      delay(100);
+    }
+     delay(500);
+  }
+ //부품 밀기 함수
+void pushingC(int a){
+   delay(500);
+  for(int i=0;i<a;i++)
+  {   
+      Serial.println("Pulling out the product...."); 
+      stepperC.step(2048);
+      delay(100);
+      stepperC.step(1024);
+      delay(100);
+    }
+     delay(500);
+  }
+ 
+//부품함 당겨오기 함수
+void pullingA(int a){
+   delay(500);
+  for(int i=0;i<a;i++)
+  {    
+      Serial.println("Putting the case in place........ ");
+      stepperA.step(-2048);
+      delay(100);
+      stepperA.step(-1024);
+      delay(100);
+    }
+     delay(500);
+  }
+  
+  //부품함 당겨오기 함수
+  void pullingB(int a){
+   delay(500);
+  for(int i=0;i<a;i++)
+  {    
+      Serial.println("Putting the case in place........ ");
+      stepperB.step(-2048);
+      delay(100);
+      stepperB.step(-1024);
+      delay(100);
+    }
+     delay(500);
+  }
+  //부품함 당겨오기 함수
+  void pullingC(int a){
+   delay(500);
+  for(int i=0;i<a;i++)
+  {    
+      Serial.println("Putting the case in place........ ");
+      stepperC.step(-2048);
+      delay(100);
+      stepperC.step(-1024);
+      delay(100);
+    }
+     delay(500);
+  }
+// 컨베이어 작동 함수
+ void conveyor()
+ {
+   Serial.println("Conveyor belt operation............ ");
+      delay (1000);
+      digitalWrite (RelaypinD, LOW); // 릴레이 ON
+      delay (5000);
+      digitalWrite (RelaypinD, HIGH); // 릴레이 OFF
+      delay (1000);
+      Serial.println("Complete............ ");
+  }
